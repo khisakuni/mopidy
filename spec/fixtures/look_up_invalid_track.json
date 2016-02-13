@@ -1,0 +1,12 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "error": {
+    "message": "Application error",
+    "code": 0,
+    "data": {
+      "message": "Expected valid URI",
+      "type": "ValidationError"
+    }
+  }
+}

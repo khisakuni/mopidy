@@ -9,7 +9,8 @@ module Mopidy
     def self.get_track(uri)
       json = Mopidy.format_json(1, 'core.library.lookup', 'uri': uri)
       response = Mopidy.post(json)
-      response.first
+      return response.first unless response.empty?
+      {}
     end
 
     private

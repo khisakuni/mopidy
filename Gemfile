@@ -1,4 +1,7 @@
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in mopidy.gemspec
+group :test do
+  gem 'webmock', '~> 1.22', '>= 1.22.6'
+end
+
 gemspec

@@ -1,0 +1,40 @@
+{
+  "jsonrpc": "2.0",
+  "id": "1",
+  "result": [
+    {
+      "__model__": "SearchResult",
+      "tracks": [
+        {
+          "album": {
+            "date": "2016",
+            "__model__": "Album",
+            "artists": [
+              {
+                "__model__": "Artist",
+                "name": "Artist Name",
+                "uri": "spotify:artist:1KCSPY1glIKqW2TotWuXOR"
+              }
+            ],
+            "name": "Album Name",
+            "uri": "spotify:album:2tUn9E3nHXhUIJ47yv6ePD"
+          },
+          "__model__": "Track",
+          "name": "Track Title",
+          "disc_no": 0,
+          "uri": "spotify:track:7bprRkhvOXWmWpqOrEWbXu",
+          "length": 215000,
+          "track_no": 11,
+          "artists": [
+            {
+              "__model__": "Artist",
+              "name": "Artist Name",
+              "uri": "spotify:artist:1KCSPY1glIKqW2TotWuXOR"
+            }
+          ],
+          "date": "2016"
+        }
+      ]
+    }
+  ]
+}
