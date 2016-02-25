@@ -1,6 +1,7 @@
 require 'mopidy/version'
 require 'mopidy/library'
 require 'mopidy/playback'
+require 'mopidy/playlist'
 require 'json'
 require 'httparty'
 
