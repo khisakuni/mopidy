@@ -1,5 +1,4 @@
 require 'spec_helper'
-require 'pry'
 
 describe Mopidy::Library do
   describe '.search_tracks' do

@@ -8,7 +8,7 @@ Mopidy.configure do |config|
   config.mopidy_url = 'http://mopidyurl:3000'
 end
 
-def stub_post(method, params, fixture_file)
+def stub_post(method, params = {}, fixture_file)
   WebMock.stub_request(:post, Mopidy.configuration.mopidy_url)
     .with(body: json(method, params), headers: {'Content-Type'=>'application/json'})
     .to_return(
