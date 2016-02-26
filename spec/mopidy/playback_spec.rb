@@ -5,7 +5,10 @@ describe Mopidy::Playback do
   describe '.state' do
     context 'while track is playing' do
       before do
-        stub_post('core.playback.get_state', 'get_playing_state.json')
+        stub_post(
+          method: 'core.playback.get_state',
+          fixture_file: 'get_playing_state.json'
+        )
       end
       it 'returns the state' do
         state = Mopidy::Playback.state
@@ -15,7 +18,10 @@ describe Mopidy::Playback do
     end
     context 'while track is paused' do
       before do
-        stub_post('core.playback.get_state', 'get_paused_state.json')
+        stub_post(
+          method: 'core.playback.get_state',
+          fixture_file: 'get_paused_state.json'
+        )
       end
       it 'returns the state' do
         state = Mopidy::Playback.state
@@ -25,7 +31,10 @@ describe Mopidy::Playback do
     end
     context 'whilte track is stopped' do
       before do
-        stub_post('core.playback.get_state', 'get_stopped_state.json')
+        stub_post(
+          method: 'core.playback.get_state',
+          fixture_file: 'get_stopped_state.json'
+        )
       end
       it 'returns the state' do
         state = Mopidy::Playback.state

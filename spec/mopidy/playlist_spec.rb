@@ -9,9 +9,9 @@ describe Mopidy::Playlist do
     context 'given a valid uri' do
       before do
         stub_post(
-          'core.playlists.lookup',
-          [playlist_uri],
-          'playlist.json'
+          method: 'core.playlists.lookup',
+          params: [playlist_uri],
+          fixture_file: 'playlist.json'
         )
       end
       it 'gets the playlist' do
@@ -44,7 +44,11 @@ describe Mopidy::Playlist do
         playlist
       end
       before do
-        stub_post('core.playlists.save', { playlist: target_playlist }, 'save_playlist.json')
+        stub_post(
+          method: 'core.playlists.save',
+          params: { playlist: target_playlist },
+          fixture_file: 'save_playlist.json'
+        )
       end
       it 'saves the playlist' do
         saved_playlist = Mopidy::Playlist.save_playlist(target_playlist)
@@ -58,9 +62,9 @@ describe Mopidy::Playlist do
 
   def mock_playlist(playlist_uri)
     stub_post(
-      'core.playlists.lookup',
-      [playlist_uri],
-      'playlist.json'
+      method: 'core.playlists.lookup',
+      params: [playlist_uri],
+      fixture_file: 'playlist.json'
     )
     Mopidy::Playlist.playlist(playlist_uri)
   end

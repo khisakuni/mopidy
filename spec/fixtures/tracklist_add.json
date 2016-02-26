@@ -1,0 +1,40 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "track": {
+        "album": {
+          "date": "2016",
+          "__model__": "Album",
+          "artists": [
+            {
+              "__model__": "Artist",
+              "name": "Artist Name",
+              "uri": "valid_artist_uri"
+            }
+          ],
+          "name": "Album Name",
+          "uri ": "valid_album_uri"
+        },
+        "__model__ ": "Track",
+        "name": "Track Name",
+        "disc_no": 0,
+        "uri": "valid_track_uri",
+        "length": 267000,
+        "track_no": 1,
+        "artists": [
+          {
+            "__model__": "Artist",
+            "name": "Artist Name",
+            "uri": "valid_artist_uri"
+          }
+        ],
+        "date": "2016",
+        "bitrate": 160
+      },
+      "__model__": "TlTrack",
+      "tlid": 3
+    }
+  ]
+}

@@ -7,9 +7,9 @@ describe Mopidy::Library do
         let(:track_title) { 'Track Title' }
         before do
           stub_post(
-            'core.library.search',
-            [{ 'any': track_title }],
-            'search_track.json'
+            method: 'core.library.search',
+            params: [{ 'any': track_title }],
+            fixture_file: 'search_track.json'
           )
         end
         it 'returns an array of matching tracks' do
@@ -23,9 +23,9 @@ describe Mopidy::Library do
         let(:artist_name) { 'Artist Name' }
         before do
           stub_post(
-            'core.library.search',
-            [{ 'any': artist_name }],
-            'search_track.json'
+            method: 'core.library.search',
+            params: [{ 'any': artist_name }],
+            fixture_file: 'search_track.json'
           )
         end
         it 'returns an array of matching tracks' do
@@ -39,9 +39,9 @@ describe Mopidy::Library do
         let(:album_name) { 'Album Name' }
         before do
           stub_post(
-            'core.library.search',
-            [{ 'any': album_name }],
-            'search_track.json'
+            method: 'core.library.search',
+            params: [{ 'any': album_name }],
+            fixture_file: 'search_track.json'
           )
         end
         it 'returns an array of matching tracks' do
@@ -56,9 +56,9 @@ describe Mopidy::Library do
       let(:no_match) { 'No Match' }
       before do
         stub_post(
-          'core.library.search',
-          [{ 'any': no_match}],
-          'no_search_match.json'
+          method: 'core.library.search',
+          params: [{ 'any': no_match}],
+          fixture_file: 'no_search_match.json'
         )
       end
       it 'returns an empty array' do
@@ -74,9 +74,9 @@ describe Mopidy::Library do
       let(:uri) { 'valid_track_uri' }
       before do
         stub_post(
-          'core.library.lookup',
-          { 'uri': uri },
-          'look_up_track.json'
+          method: 'core.library.lookup',
+          params: { 'uri': uri },
+          fixture_file: 'look_up_track.json'
         )
       end
       it 'returns the track' do
@@ -89,9 +89,9 @@ describe Mopidy::Library do
       let(:uri) { 'invalid_track_uri' }
       before do
         stub_post(
-          'core.library.lookup',
-          { 'uri': uri },
-          'look_up_invalid_track.json'
+          method: 'core.library.lookup',
+          params: { 'uri': uri },
+          fixture_file: 'look_up_invalid_track.json'
         )
       end
       it 'returns an empty hash' do
