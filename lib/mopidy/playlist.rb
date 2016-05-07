@@ -1,5 +1,10 @@
 module Mopidy
   module Playlist
+    def self.as_list
+      json = Mopidy.format_json(1, 'core.playlists.as_list')
+      Mopidy.post(json)
+    end
+
     def self.playlist(uri)
       json = Mopidy.format_json(1, 'core.playlists.lookup', [uri])
       Mopidy.post(json)
