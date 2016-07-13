@@ -2,6 +2,22 @@ require 'spec_helper'
 
 describe Mopidy::Playlist do
   let(:playlist_uri) { 'valid_playlist_uri' }
+
+  describe '.as_list'do
+    before do
+      stub_post(
+        method: 'core.playlists.as_list',
+        fixture_file: 'playlists_as_list.json'
+      )
+    end
+
+    it 'lists available playlists' do
+      playlists = Mopidy::Playlist.as_list
+
+      expect(playlists.size).to eq(2)
+    end
+  end
+
   describe '.playlist' do
     let(:playlist_name) { 'Playlist Name' }
     let(:track_name) { 'Track Name' }
@@ -29,6 +45,7 @@ describe Mopidy::Playlist do
       end
     end
   end
+
   describe '.save_playlist' do
     context 'given a valid playlist object' do
       let(:playlist) { mock_playlist(playlist_uri) }
@@ -43,6 +60,7 @@ describe Mopidy::Playlist do
         playlist['tracks'] << new_track
         playlist
       end
+
       before do
         stub_post(
           method: 'core.playlists.save',
@@ -50,6 +68,7 @@ describe Mopidy::Playlist do
           fixture_file: 'save_playlist.json'
         )
       end
+
       it 'saves the playlist' do
         saved_playlist = Mopidy::Playlist.save_playlist(target_playlist)
 

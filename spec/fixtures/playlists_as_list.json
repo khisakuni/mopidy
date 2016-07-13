@@ -1,0 +1,18 @@
+{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": [
+    {
+      "__model__": "Ref",
+      "type": "playlist",
+      "name": "Discover Weekly (by spotifydiscover)",
+      "uri": "spotify:user:spotifydiscover:playlist:3Kjn22grJpiIJxO30MHPtO"
+    },
+    {
+      "__model__": "Ref",
+      "type": "playlist",
+      "name": "Weekend Buzz (by spotify)",
+      "uri": "spotify:user:spotify:playlist:6Hw1sUOCpE59V7AlIIHhCz"
+    }
+  ]
+}
