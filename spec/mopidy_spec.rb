@@ -30,7 +30,7 @@ describe Mopidy do
              foo: "bar"
           }
         }.to_json
-        
+
         expect(Mopidy.format_json(id, method, params)).to eq(target_json)
       end
     end

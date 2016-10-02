@@ -3,6 +3,8 @@ require 'mopidy/library'
 require 'mopidy/playback'
 require 'mopidy/playlist'
 require 'mopidy/tracklist'
+require 'mopidy/response'
+require 'mopidy/http'
 require 'json'
 require 'httparty'
 
@@ -18,9 +20,11 @@ module Mopidy
 
   class Configuration
     attr_accessor :mopidy_url
+    attr_accessor :http_provider
 
     def initialize
-      @mopidy_url ||= 'http://localhost:6680/mopidy/rpc'
+      @mopidy_url = 'http://localhost:6680/mopidy/rpc'
+      @http_provider = HTTParty
     end
   end
 
@@ -34,15 +38,7 @@ module Mopidy
   end
 
   def self.post(body)
-    post = HTTParty.post(
-      configuration.mopidy_url,
-      body: body,
-      headers: {
-        'Content-Type' => 'application/json'
-      }
-    )
-    result = post.parsed_response['result']
-    return {} if result.nil?
-    result
+    headers = { 'Content-Type' => 'application/json' }
+    res = Http.post(configuration.mopidy_url, body, headers)
   end
 end

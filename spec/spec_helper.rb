@@ -2,6 +2,7 @@ $LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
 require 'mopidy'
 require 'webmock'
 require 'pry'
+require 'mocks/mock_http_provider'
 
 WebMock.disable_net_connect!
 
@@ -9,18 +10,15 @@ Mopidy.configure do |config|
   config.mopidy_url = 'http://mopidyurl:3000'
 end
 
-def stub_post(method:, params: {}, fixture_file: nil)
-  if fixture_file.nil?
-    return stub_post_without_fixture(method, params)
+def stub_post(body, status_code = 200)
+  MockHttpProvider.configure do |config|
+    config.response_body = body
+    config.status_code = status_code
   end
-  WebMock.stub_request(:post, Mopidy.configuration.mopidy_url)
-    .with(body: json(method, params), headers: { 'Content-Type': 'application/json' })
-    .to_return(
-      body: fixture(fixture_file),
-      headers: {
-        content_type: 'application/json; charset=utf-8'
-      }
-    )
+
+  Mopidy.configure do |config|
+    config.http_provider = MockHttpProvider
+  end
 end
 
 def fixture_path
@@ -32,12 +30,6 @@ def fixture(file)
 end
 
 private
-
-def stub_post_without_fixture(method, params)
-  WebMock.stub_request(:post, Mopidy.configuration.mopidy_url)
-    .with(body: json(method, params), headers: { 'Content-Type': 'application/json' })
-end
-
 
 def json(method, params)
   {
