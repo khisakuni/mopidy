@@ -60,7 +60,7 @@ describe Mopidy::Library do
     end
   end
 
-  describe '.get_track' do
+  describe '.lookup' do
     context 'given a valid uri' do
       let(:uri) { 'valid_track_uri' }
 
@@ -69,7 +69,7 @@ describe Mopidy::Library do
       end
 
       it 'returns the track' do
-        res = Mopidy::Library.get_track(uri)
+        res = Mopidy::Library.lookup(uri)
 
         expect(res.body['uri']).to eq(uri)
       end
@@ -83,7 +83,7 @@ describe Mopidy::Library do
       end
 
       it 'returns an empty hash' do
-        res = Mopidy::Library.get_track(uri)
+        res = Mopidy::Library.lookup(uri)
 
         expect(res.body).to eq([])
       end

@@ -15,7 +15,7 @@ describe Mopidy::Playlist do
     end
   end
 
-  describe '.playlist' do
+  describe '.lookup' do
     let(:playlist_name) { 'Playlist Name' }
     let(:track_name) { 'Track Name' }
     let(:track_uri) { 'valid_track_uri' }
@@ -26,14 +26,14 @@ describe Mopidy::Playlist do
       end
 
       it 'gets the playlist' do
-        res = Mopidy::Playlist.playlist(playlist_uri)
+        res = Mopidy::Playlist.lookup(playlist_uri)
 
         expect(res.body['name']).to eq(playlist_name)
         expect(res.body['uri']).to eq(playlist_uri)
       end
 
       it 'gets the tracks in the playlist' do
-        res = Mopidy::Playlist.playlist(playlist_uri)
+        res = Mopidy::Playlist.lookup(playlist_uri)
 
         expect(res.body['tracks'].first['name']).to eq(track_name)
         expect(res.body['tracks'].first['uri']).to eq(track_uri)
@@ -41,7 +41,7 @@ describe Mopidy::Playlist do
     end
   end
 
-  describe '.save_playlist' do
+  describe '.save' do
     context 'given a valid playlist object' do
       let(:playlist) { mock_playlist(playlist_uri) }
       let(:new_track) do
@@ -61,7 +61,7 @@ describe Mopidy::Playlist do
       end
 
       it 'saves the playlist' do
-        res = Mopidy::Playlist.save_playlist(target_playlist)
+        res = Mopidy::Playlist.save(target_playlist)
 
         expect(res.body['tracks'].length).to eq(target_playlist['tracks'].length)
         expect(res.body['tracks'].last[:name]).to eq(new_track[:name])
@@ -72,7 +72,7 @@ describe Mopidy::Playlist do
 
   def mock_playlist(playlist_uri)
     stub_post(JSON.parse(fixture('playlist.json')))
-    res = Mopidy::Playlist.playlist(playlist_uri)
+    res = Mopidy::Playlist.lookup(playlist_uri)
     res.body
   end
 end

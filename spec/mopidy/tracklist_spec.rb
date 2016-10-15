@@ -23,7 +23,7 @@ describe Mopidy::Tracklist do
     end
   end
 
-  describe '.tracklist' do
+  describe '.tracks' do
     let(:track_uri) { 'valid_track_uri' }
 
     before do
@@ -31,7 +31,7 @@ describe Mopidy::Tracklist do
     end
 
     it 'returns an array of tracks in the tracklist' do
-      res = Mopidy::Tracklist.tracklist
+      res = Mopidy::Tracklist.tracks
 
       expect(res.body.first['uri']).to eq(track_uri)
     end
@@ -51,7 +51,7 @@ describe Mopidy::Tracklist do
     end
   end
 
-  describe '.tracks'
+  describe '.tl_tracks'
   describe '.add'
   describe '.length'
   describe '.clear'

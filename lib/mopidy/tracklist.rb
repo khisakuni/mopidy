@@ -7,7 +7,7 @@ module Mopidy
       end
     end
 
-    def self.tracklist
+    def self.tracks
       json = Mopidy.format_json(1, 'core.tracklist.get_tracks')
       Mopidy.post(json)
     end
@@ -23,7 +23,7 @@ module Mopidy
       Mopidy.post(json)
     end
 
-    def self.tracks
+    def self.tl_tracks
       json = Mopidy.format_json(1, 'core.tracklist.get_tl_tracks')
       Mopidy.post(json)
     end
